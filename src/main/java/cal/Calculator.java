@@ -3,25 +3,12 @@ package cal;
 public class Calculator {
 
 	private String delimiter = ",";
+	private String negativeNumber = "";
 
 	public int Add(String value) {
-
 		if (value.isEmpty()) {
 			// add null string
 			return 0;
-		}
-		if (value.contains("-")) {
-			String num = "";
-			// add unknown numbers separated by delimiter (comma / new line)
-			String[] numbers = value.split(delimiter);
-			for (int i = 0; i < numbers.length; i++) {
-				int a = Integer.parseInt(numbers[i]);
-				if (a < 0) {
-					num = num + numbers[i] + ",";
-				}
-			}
-			num = num.substring(0, num.length() - 1);
-			throw new RuntimeException("negatives not allowed: " + num);
 		}
 		return sumValue(value);
 	}
@@ -43,9 +30,26 @@ public class Calculator {
 		String[] numbers = value.split(delimiter);
 		for (int i = 0; i < numbers.length; i++) {
 			int a = Integer.parseInt(numbers[i]);
-			sum += a;
+
+			// Check for negative values and throw exception
+			if (a < 0) {
+				negativeNumbersException(numbers);
+			} else {
+				sum += a;
+			}
 		}
 		return sum;
+	}
+
+	private void negativeNumbersException(String[] numbers) {
+		for (int j = 0; j < numbers.length; j++) {
+			int b = Integer.parseInt(numbers[j]);
+			if (b < 0) {
+				negativeNumber = negativeNumber + numbers[j] + ",";
+			}
+		}
+		negativeNumber = negativeNumber.substring(0, negativeNumber.length() - 1);
+		throw new RuntimeException("negatives not allowed: " + negativeNumber);
 	}
 
 }
