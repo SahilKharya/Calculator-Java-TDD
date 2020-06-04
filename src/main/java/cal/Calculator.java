@@ -3,7 +3,12 @@ package cal;
 public class Calculator {
 
 	public int Add(String value) {
-		return 0;
+		if(value.isEmpty()) {
+			return 0;
+		} else {
+			return Integer.parseInt(value);
+		}
+		
 	}
 	
 	
