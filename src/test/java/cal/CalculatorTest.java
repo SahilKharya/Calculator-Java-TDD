@@ -35,9 +35,16 @@ class CalculatorTest {
 	}
 	
 	@Test
-	public void addNumbersSeparatedByNewLine() {
+	public void addNumbersSeparatedByNewLineOrComma() {
 		assertEquals(6, calculator.Add("1\n2,3"), "Wrong result for adding values.");
 		assertEquals(40, calculator.Add("3,7\n15\n15"), "Wrong result for adding values.");
 		assertEquals(20, calculator.Add("12\n8"), "Wrong result for adding values.");
 	}
+	
+
+    @Test
+    public void supportDifferentDelimiters() {
+        assertEquals(3, calculator.Add("//?\n1\n2"));
+        assertEquals(3, calculator.Add("//;\n1;2"));
+    }
 }
