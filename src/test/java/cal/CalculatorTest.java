@@ -44,7 +44,7 @@ class CalculatorTest {
 
     @Test
     public void supportDifferentDelimiters() {
-        assertEquals(3, calculator.Add("//?\n1\n2"));
         assertEquals(3, calculator.Add("//;\n1;2"));
+        assertEquals(3, calculator.Add("//,\n1,2"));
     }
 }
