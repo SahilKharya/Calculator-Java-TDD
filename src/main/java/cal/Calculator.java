@@ -2,9 +2,8 @@ package cal;
 
 public class Calculator {
 
-	public Integer add(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public int Add(String value) {
+		return 0;
 	}
 	
 	
