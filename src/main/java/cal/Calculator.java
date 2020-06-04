@@ -12,27 +12,17 @@ public class Calculator {
 			String[] exp = value.split("\n", 2);
 			delimiter = exp[0].substring(2);
 			value = exp[1];
-			System.out.println(exp[1]+" df");
-			System.out.println(exp[0].substring(2)+ "as");
-			int sum = 0;
-			// add unknown numbers separated by delimiter (comma / new line)
-			String[] numbers = value.split(delimiter);
-			for (int i = 0; i < numbers.length; i++) {
-				int a = Integer.parseInt(numbers[i]);
-				System.out.println(" a = " + numbers[i]);
-				sum += a;
-			}
-			return sum;
 		} else {
-			return sumOfDelimitorSeparatedNumbers(value);
+			delimiter = ",|\n";
 		}
+		return sumOfDelimiterSeparatedNumbers(value, delimiter);
 
 	}
 
-	private int sumOfDelimitorSeparatedNumbers(String value) {
+	private int sumOfDelimiterSeparatedNumbers(String value, String delimiter) {
 		int sum = 0;
 		// add unknown numbers separated by delimiter (comma / new line)
-		String[] numbers = value.split(",|\n");
+		String[] numbers = value.split(delimiter);
 		for (int i = 0; i < numbers.length; i++) {
 			int a = Integer.parseInt(numbers[i]);
 			sum += a;
