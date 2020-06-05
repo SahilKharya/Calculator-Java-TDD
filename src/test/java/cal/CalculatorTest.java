@@ -78,6 +78,7 @@ class CalculatorTest {
 	public void allowMultipleDelimiters() {
 		assertEquals(6, calculator.Add("//[*][%]\n1*2%3"));
 	}
+
 	@Test
 	public void allowMultipleRandomLengthDelimiters() {
 		assertEquals(6, calculator.Add("//[**][%]\n1**2%3"));

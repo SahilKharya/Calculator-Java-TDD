@@ -4,35 +4,48 @@ public class Calculator {
 
 	private String delimiter = ",";
 	private String negativeNumber = "";
+	private String[] ch = new String[] { "+", "*", "?" };
 
 	public int Add(String value) {
+		// add null string
 		if (value.isEmpty()) {
-			// add null string
 			return 0;
 		}
+		// not null values
 		return sumValue(value);
 	}
 
-	// Method to use check and use delimiter
+	// Method to check and use delimiter
 	private int sumValue(String value) {
-		if (value.startsWith("//[")) {
-			String[] exp = value.split("\n", 2);
-			delimiter = exp[0].substring(3, exp[0].length() - 1);
-			if (delimiter.contains("][")) {
-				delimiter = delimiter.replaceAll("\\]\\[", "|");
-			}
-			if (delimiter.contains("*")) {
-				delimiter = delimiter.replaceAll("\\*", "\\\\*");
-			}
-			value = exp[1];
-		} else if (value.startsWith("//")) {
-			String[] exp = value.split("\n", 2);
-			delimiter = exp[0].substring(2);
-			value = exp[1];
+		if (value.startsWith("//")) {
+			value = multipleDelimitersStartingWithExpression(value);
 		} else {
 			delimiter = ",|\n";
 		}
 		return sumOfDelimiterSeparatedNumbers(value, delimiter);
+	}
+
+	// Method for equation starting with //
+	private String multipleDelimitersStartingWithExpression(String value) {
+		String[] equation = value.split("\n", 2);
+		delimiter = equation[0].substring(2);
+
+		if (delimiter.startsWith("[")) {
+			delimiter = delimiter.substring(1, delimiter.length() - 1);
+			// 'if' there are multiple delimiters within different []
+			if (delimiter.contains("][")) {
+				delimiter = delimiter.replaceAll("\\]\\[", "|");
+			}
+			// for loop to change special meta characters in java which require escape
+			// sequence
+			for (String c : ch) {
+				if (delimiter.contains(c)) {
+					delimiter = delimiter.replaceAll("\\" + c, "\\\\" + c);
+				}
+			}
+		}
+		value = equation[1];
+		return value;
 	}
 
 	// Method to add the unknown values
