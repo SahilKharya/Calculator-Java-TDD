@@ -15,7 +15,14 @@ public class Calculator {
 
 	// Method to use check and use delimiter
 	private int sumValue(String value) {
-		if (value.startsWith("//")) {
+		if (value.startsWith("//[")) {
+			String[] exp = value.split("\n", 2);
+			delimiter = exp[0].substring(3, exp[0].length() - 1);
+			if (delimiter.contains("*")) {
+				delimiter = delimiter.replaceAll("\\*", "\\\\*");
+			}
+			value = exp[1];
+		} else if (value.startsWith("//")) {
 			String[] exp = value.split("\n", 2);
 			delimiter = exp[0].substring(2);
 			value = exp[1];
