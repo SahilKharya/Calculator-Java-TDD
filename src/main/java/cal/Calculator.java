@@ -18,7 +18,6 @@ public class Calculator {
 		if (value.startsWith("//[")) {
 			String[] exp = value.split("\n", 2);
 			delimiter = exp[0].substring(3, exp[0].length() - 1);
-			System.out.println(delimiter);
 			if (delimiter.contains("][")) {
 				delimiter = delimiter.replaceAll("\\]\\[", "|");
 			}
