@@ -65,8 +65,8 @@ class CalculatorTest {
 	
 	@Test
 	public void ignoreGreaterThanThousand() {
-		assertEquals(15, calculator.Add("10,1030,5,"));
-		assertEquals(0, calculator.Add("1250,1030,2225,"));
+		assertEquals(15, calculator.Add("10,1030,5"));
+		assertEquals(0, calculator.Add("1250,1030,2225"));
 
 	}
 }

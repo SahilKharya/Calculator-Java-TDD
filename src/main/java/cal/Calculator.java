@@ -13,6 +13,7 @@ public class Calculator {
 		return sumValue(value);
 	}
 
+	// Method to use check and use delimiter
 	private int sumValue(String value) {
 		if (value.startsWith("//")) {
 			String[] exp = value.split("\n", 2);
@@ -24,9 +25,10 @@ public class Calculator {
 		return sumOfDelimiterSeparatedNumbers(value, delimiter);
 	}
 
+	// Method to add the unknown values
 	private int sumOfDelimiterSeparatedNumbers(String value, String delimiter) {
 		int sum = 0;
-		// add unknown numbers separated by delimiter (comma / new line)
+		// add unknown numbers separated by delimiter
 		String[] numbers = value.split(delimiter);
 		for (int i = 0; i < numbers.length; i++) {
 			int a = Integer.parseInt(numbers[i]);
@@ -35,12 +37,18 @@ public class Calculator {
 			if (a < 0) {
 				negativeNumbersException(numbers);
 			} else {
+				// Check for number > 1000 and skip its addition
+				if (a > 1000) {
+					continue;
+				}
+				// Add the values
 				sum += a;
 			}
 		}
 		return sum;
 	}
 
+	// Method to throw exception for any negative number and print those numbers
 	private void negativeNumbersException(String[] numbers) {
 		for (int j = 0; j < numbers.length; j++) {
 			int b = Integer.parseInt(numbers[j]);
