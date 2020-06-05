@@ -54,7 +54,7 @@ class CalculatorTest {
 		});
 		assertEquals("negatives not allowed: -5", exception.getMessage());
 	}
-	
+
 	@Test
 	public void exceptionMultipleNegativeNumbers() {
 		Exception exception = assertThrows(RuntimeException.class, () -> {
@@ -62,11 +62,15 @@ class CalculatorTest {
 		});
 		assertEquals("negatives not allowed: -4,-6", exception.getMessage());
 	}
-	
+
 	@Test
 	public void ignoreGreaterThanThousand() {
 		assertEquals(15, calculator.Add("10,1030,5"));
 		assertEquals(0, calculator.Add("1250,1030,2225"));
+	}
 
+	@Test
+	public void delimiterMoreThanOneLength() {
+		assertEquals(6, calculator.Add("//[***]\\n1***2***3"));
 	}
 }
