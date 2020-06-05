@@ -76,6 +76,6 @@ class CalculatorTest {
 
 	@Test
 	public void allowMultipleDelimiters() {
-		assertEquals(6, calculator.Add("//[*][%]\n1*2%3)"));
+		assertEquals(6, calculator.Add("//[*][%]\n1*2%3"));
 	}
 }
